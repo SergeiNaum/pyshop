@@ -1,0 +1,41 @@
+networks:
+  default:
+    driver: bridge
+
+
+services:
+  api:
+    image: sergeynaum/resoline:latest
+    env_file:
+      - ./docker/env/.env
+    depends_on:
+      - database
+
+    restart: always
+
+    command: sh -c "poetry run gunicorn -c gunicorn_conf.py app.main:app"
+
+
+  nginx:
+    container_name: nginx
+    working_dir: /app
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d:ro
+    links:
+      - api
+    depends_on:
+      - api
+
+  database:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    env_file:
+      - ./docker/env/.env
+

@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "project"
+version = "0.1.0"
+description = ""
+authors = ["SergeiNaum <sergei.naumencko@yandex.ru>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+lxml = "^5.1.0"
+scrapy = "^2.11.1"
+scrapy-selenium = "^0.0.7"
+install = "^1.3.5"
+selenium = "^4.18.1"
+webdriver-manager = "^4.0.1"
+scrapy-fake-useragent = "^1.4.4"
+scrapy-rotating-proxies = "^0.6.2"
+pandas = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
